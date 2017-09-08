@@ -12,6 +12,7 @@
                     <th>ID</th>
                     <th>Email</th>
                     <th>LoginTime</th>
+                    <th>VipTime</th>
                     <th>AddTime</th>
                     <th>SetUp</th>
                 </tr>
@@ -26,6 +27,7 @@
                             {{date('Y-m-d H:i:s',$value->logintime)}}
                         @endif
                     </td>
+                    <td>{{ $value->viptype }}</td>
                     <td>{{date('Y-m-d',$value->addtime)}}</td>
                     <td>
                         @if ($value->type == 0)
@@ -41,6 +43,7 @@
                     <th>ID</th>
                     <th>Email</th>
                     <th>LoginTime</th>
+                    <th>VipTime</th>
                     <th>AddTime</th>
                     <th>SetUp</th>
                 </tr>

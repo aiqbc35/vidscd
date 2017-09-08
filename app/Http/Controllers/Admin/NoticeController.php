@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Notice;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Request;
 
 class NoticeController
@@ -76,6 +77,7 @@ class NoticeController
 
 
             if ($result) {
+                Cache::forget('homeList');
                 return redirect('admin/notice');
             }else{
                 return redirect()->back()->with('error','提交失败')->withInput();
