@@ -81,7 +81,7 @@ class CodeController
     {
         $code = array();
         $oldcode = self::$newCode;
-        $num = 40;
+        $num = 20;
         $time = time();
         $type = self::$type;
 

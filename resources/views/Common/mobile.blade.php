@@ -19,6 +19,9 @@
 <body ontouchstart="" class="body-bg">
 <div id="vueapp">
 <div class="container padding-bottom-75" id="container">
+    <div class="weui-flex">
+        <a class="weui-flex__item top-nav-bg" href="/mobile/member/upvip"><span class="weui-badge" style="margin-left: 5px;margin-right: 5px;">New</span>劲爆体验价18元任意观看VIP视频</a>
+    </div>
     <div class="page home js_show">
         <div class="page__hd">
             <div class="weui-tab">
