@@ -70,5 +70,5 @@
 
 @stop
 @section('script')
-<script type="text/javascript" src="/mobile/js/up-vip.js"></script>
+<script type="text/javascript" src="/mobile/js/up-vip.js?v1"></script>
 @stop

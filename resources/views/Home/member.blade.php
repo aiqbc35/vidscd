@@ -11,5 +11,5 @@
     </div>
 @stop
 @section('script')
-    <script type="text/javascript" src="{{asset('js/member-index.js')}}"></script>
+    <script type="text/javascript" src="/js/member-index.js?v1"></script>
 @stop

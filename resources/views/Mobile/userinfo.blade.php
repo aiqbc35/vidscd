@@ -25,5 +25,5 @@
     </div>
 @stop
 @section('script')
-<script src="/mobile/js/up-userinfo.js"></script>
+<script src="/mobile/js/up-userinfo.js?v1"></script>
 @stop

@@ -58,5 +58,5 @@
     </div>
 @stop
 @section('script')
-<script type="text/javascript" src="{{ asset('js/member-vip.js') }}"></script>
+<script type="text/javascript" src="/js/member-vip.js?v2"></script>
 @stop

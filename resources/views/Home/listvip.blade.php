@@ -11,7 +11,7 @@
                     <div class="thumbnail">
                         <img alt="100%x200" style="height: 200px; width: 100%; display: block;" src="" v-bind:src="imglink + item.img">
                         <div class="caption clearfix">
-                            <h3>@{{ subTextString(item.title) }}</h3>
+                            <h4>@{{ subTextString(item.title) }}</h4>
                             <div class="pull-left move-info">时间：@{{ item.addtime }}</div>
                             <div class="pull-right move-info">观看：@{{ item.scan }}</div>
                         </div>
@@ -30,5 +30,5 @@
     </div>
 @stop
 @section('script')
-    <script type="text/javascript" src="{{ asset('js/listvip-vue.js') }}"></script>
+    <script type="text/javascript" src="/js/listvip-vue.js?v1"></script>
 @stop

@@ -15,6 +15,6 @@
     </div>
 @stop
 @section('script')
-    <script type="text/javascript" src="/mobile/js/photoSlider-1.21.js"></script>
-    <script type="text/javascript" src="/mobile/js/mobile-index.js"></script>
+    <script type="text/javascript" src="/mobile/js/photoSlider-1.21.js?v1"></script>
+    <script type="text/javascript" src="/mobile/js/mobile-index.js?v1"></script>
 @stop

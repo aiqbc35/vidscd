@@ -21,5 +21,5 @@
     <div class="weui-cells__tips" style="text-align: center;"><a href="/mobile/reg" class="color-zhuti line-height-36">没有账号，前往注册</a></div>
 @stop
 @section('script')
-<script type="text/javascript" src="/mobile/js/login-vue.js"></script>
+<script type="text/javascript" src="/mobile/js/login-vue.js?v1"></script>
 @stop

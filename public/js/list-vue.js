@@ -95,7 +95,7 @@ new Vue({
                     _self.alert1('页面已过时，请刷新后访问');
                 }else {
                     if (apiType == 'reg') {
-                        $.post("api/reg", { email: this.email, passwd: this.passwd,'_token':token,type:'pc' },function(data){
+                        $.post("/api/reg", { email: this.email, passwd: this.passwd,'_token':token,type:'pc' },function(data){
                             if (data.status == 'success') {
                                 window.location.href = '/member/'
                             }else{
@@ -103,7 +103,7 @@ new Vue({
                             }
                         },'json');
                     }else{
-                        $.post("api/login", { email: this.email, passwd: this.passwd,'_token':token,type:'pc' },function(data){
+                        $.post("/api/login", { email: this.email, passwd: this.passwd,'_token':token,type:'pc' },function(data){
                             if (data.status == 'success') {
                                 window.location.href = '/member/'
                             }else{

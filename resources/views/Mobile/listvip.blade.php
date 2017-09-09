@@ -31,5 +31,5 @@
     </div>
 @stop
 @section('script')
-    <script type="text/javascript" src="/mobile/js/list-vip.js"></script>
+    <script type="text/javascript" src="/mobile/js/list-vip.js?v1"></script>
 @stop

@@ -22,5 +22,5 @@
     <div class="weui-cells__tips" style="text-align: center;"><a href="/mobile/login" class="color-zhuti line-height-36">已有账号，前往登陆</a></div>
 @stop
 @section('script')
-<script type="text/javascript" src="/mobile/js/reg-vue.js"></script>
+<script type="text/javascript" src="/mobile/js/reg-vue.js?v1"></script>
 @stop

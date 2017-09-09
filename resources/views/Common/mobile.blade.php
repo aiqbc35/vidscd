@@ -6,7 +6,7 @@
     <title>GodSky在線視頻</title>
     <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/mobile/css/style.css" rel="stylesheet">
+    <link href="/mobile/css/style.css?v1" rel="stylesheet">
     @section('css')
     @show
     <script type="text/javascript">
@@ -61,7 +61,7 @@
 </div>
 <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
-<script src="/mobile/js/js.js"></script>
+<script src="/mobile/js/js.js?v1"></script>
 @section('script')
 @show
 <script>

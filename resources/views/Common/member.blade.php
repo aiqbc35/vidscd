@@ -12,14 +12,14 @@
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{{ asset('css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
+    <link href="/css/ie10-viewport-bug-workaround.css?v1" rel="stylesheet">
     <link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="/css/dashboard.css?v2" rel="stylesheet">
+    <link href="/css/style.css?v2" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="{{ asset('js/ie8-responsive-file-warning.js') }}"></script><![endif]-->
-    <script src="{{ asset('js/ie-emulation-modes-warning.js') }}"></script>
+    <!--[if lt IE 9]><script src="/js/ie8-responsive-file-warning.js?v1"></script><![endif]-->
+    <script src="/js/ie-emulation-modes-warning.js?v1"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -94,9 +94,9 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<script src="{{ asset('js/holder.min.js') }}"></script>
+<script src="/js/holder.min.js?v1"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>
+<script src="/js/ie10-viewport-bug-workaround.js?v1"></script>
 <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
 @yield('script')

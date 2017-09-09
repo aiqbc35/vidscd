@@ -84,5 +84,5 @@
 
 @stop
 @section('script')
-<script type="text/javascript" src="{{asset('js/index-vue.js')}}"></script>
+<script type="text/javascript" src="/js/index-vue.js?v1"></script>
 @stop

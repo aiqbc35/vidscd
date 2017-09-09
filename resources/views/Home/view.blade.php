@@ -32,7 +32,7 @@
 @stop
 @section('script')
 
-<script type="text/javascript" src="/js/view-vue.js"></script>
-<script src="{{ asset('video-js/ie8/videojs-ie8.min.js') }}"></script>
-<script src="{{ asset('video-js/video.min.js') }}"></script>
+<script type="text/javascript" src="/js/view-vue.js?v1"></script>
+<script src="/video-js/ie8/videojs-ie8.min.js?v2"></script>
+<script src="/video-js/video.min.js?v1"></script>
 @stop

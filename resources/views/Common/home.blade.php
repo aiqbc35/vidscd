@@ -10,7 +10,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
     @yield('css')
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link href="/css/style.css?v2" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -105,7 +105,7 @@
 <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
 @yield('script')
-<script src="{{asset('js/js.js')}}"></script>
+<script src="/js/js.js?v6"></script>
 <script>
     var _hmt = _hmt || [];
     (function() {

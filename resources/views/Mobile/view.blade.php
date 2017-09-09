@@ -17,6 +17,6 @@
     <script src="{{ asset('video-js/ie8/videojs-ie8.min.js') }}"></script>
     <script src="{{ asset('video-js/video.min.js') }}"></script>
 
-<script src="/mobile/js/view.js"></script>
+<script src="/mobile/js/view.js?v1"></script>
 
 @stop
