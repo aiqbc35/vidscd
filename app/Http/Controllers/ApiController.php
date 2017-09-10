@@ -154,6 +154,9 @@ class ApiController extends ResponsController
                 return $this->setStatusCode(101)->responsError($isLogin);
             }
 
+            Session::flush();
+            $this->autoLogin();
+
             $userinfo = Cookie::get(self::$userinfoCookieName);
 
             if ($userinfo['vip'] == false) {
@@ -402,7 +405,7 @@ class ApiController extends ResponsController
                 return $this->setStatusCode(404)->responsError('激活失败');
             }
 
-            Session::forget('user_id');
+            Session::flush();
 
             $this->autoLogin();
 
@@ -454,16 +457,29 @@ class ApiController extends ResponsController
                 $info = Cookie::get($key);
 
                 $user = AdminUser::where('id','=',$info['id'])->first();
+
                 if (!isset($user->id) || $user->id == '') {
                     return $data = '没有这个用户';
                 }
 
+                $isvip = $this->IsVip($user);
+
+                if ($isvip) {
+                    $user = AdminUser::where('id','=',$info['id'])->first();
+                }
+
+
+                $user->logintime = time();
+                $user->save();
+
                 $this->userPutCache($user);
-                Session::put('user_id',$user->id);
+                Session::put('user_id',$user->id,60);
             }
         return false;
 
     }
+
+
     /**
      * 获取视频列表
      * @param Request $request
@@ -526,6 +542,17 @@ class ApiController extends ResponsController
             if (!isset($info->username)) {
                 return $this->setStatusCode(404)->responsError('用户名或密码错误！');
             }
+
+            $isvip = $this->IsVip($info);
+            if ($isvip) {
+                $info = AdminUser::where('username', '=', $email)
+                    ->where('password', '=', $passwd)
+                    ->first();
+            }
+
+            $info->logintime = time();
+            $info->save();
+
             self::userPutCache($info);
 
             return $this->respons([
@@ -536,6 +563,20 @@ class ApiController extends ResponsController
         } else {
             return $this->setStatusCode(404)->responsError('请合法访问');
         }
+    }
+
+    private function IsVip($user)
+    {
+        $time = time();
+        if ($time >= $user->vipstoptime) {
+           return  AdminUser::where('id','=',$user->id)
+                ->update([
+                   'viptype' => 0,
+                   'vipstoptime' => 0,
+                   'type' => 0
+                ]);
+        }
+        return false;
     }
 
     /**
@@ -581,11 +622,13 @@ class ApiController extends ResponsController
             if (isset($info->username)) {
                 return $this->setStatusCode(102)->responsError('邮箱已存在，请确认您输入的邮箱');
             }
+            $time = time();
             $result = AdminUser::create([
                 'username' => $email,
                 'password' => md5($passwd),
-                'addtime' => time(),
-                'ismobile' => $isMobile
+                'addtime' => $time,
+                'ismobile' => $isMobile,
+                'logintime'=>$time
             ]);
 
             if ($result) {
@@ -663,7 +706,7 @@ class ApiController extends ResponsController
      * 获取图片服务器
      * @return mixed
      */
-    static protected function getImagesService()
+    static public function getImagesService()
     {
 
         if (Cache::has('imagesServer')) {

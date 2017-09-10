@@ -50,7 +50,7 @@
                     <div class="thumbnail">
                         <img alt="100%x200" style="height: 200px; width: 100%; display: block;" src="" v-bind:src="imglink + item.img">
                         <div class="caption clearfix">
-                            <h3>@{{ subTextString(item.title) }}</h3>
+                            <h4>@{{ subTextString(item.title) }}</h4>
                             <div class="pull-left move-info">时间：@{{ item.addtime }}</div>
                             <div class="pull-right move-info">观看：@{{ item.hit }}</div>
                         </div>
@@ -67,9 +67,9 @@
                     <div class="thumbnail">
                         <img alt="100%x200" style="height: 200px; width: 100%; display: block;" src="" v-bind:src="imglink + item.img">
                         <div class="caption clearfix">
-                            <h3>@{{ subTextString(item.title) }}</h3>
+                            <h4>@{{ subTextString(item.title) }}</h4>
                             <div class="pull-left move-info">时间：@{{ item.addtime }}</div>
-                            <div class="pull-right move-info">观看：@{{ item.hit }}</div>
+                            <div class="pull-right move-info">观看：@{{ item.scan }}</div>
                         </div>
                     </div>
                 </a>
@@ -78,7 +78,7 @@
     </div>
     <div class="container-fluid links">
         <div class="row" style="font-size: 10px;">
-            <a class="col-md-1" v-for="link in links">@{{ link.title }}</a>
+            <a class="col-md-1" v-for="link in links" href="" v-bind:href="link.link">@{{ link.title }}</a>
         </div>
     </div>
 

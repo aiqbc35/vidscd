@@ -16,13 +16,13 @@ class UserLogin
 
         if (empty($user_id)) {
             if (!Cookie::has($key)) {
-                return redirect('/');
+                return redirect('/mobile/login');
             }
             $info = Cookie::get($key);
 
             $user = AdminUser::where('id','=',$info['id'])->first();
             if (!isset($user->id) || $user->id == '') {
-                return redirect('/');
+                return redirect('/mobile/login');
             }
 
             Session::put('user_id',$user->id);

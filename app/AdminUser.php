@@ -18,5 +18,5 @@ class AdminUser extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['username','password','addtime','ismobile'];
+    protected $fillable = ['username','password','addtime','ismobile','logintime'];
 }

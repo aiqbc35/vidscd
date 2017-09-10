@@ -14,6 +14,7 @@
                     <th>LoginTime</th>
                     <th>VipTime</th>
                     <th>AddTime</th>
+                    <th>IsMobile</th>
                     <th>SetUp</th>
                 </tr>
                 </thead>
@@ -30,6 +31,9 @@
                     <td>{{ $value->viptype }}</td>
                     <td>{{date('Y-m-d',$value->addtime)}}</td>
                     <td>
+                        {{ $value->ismobile }}
+                    </td>
+                    <td>
                         @if ($value->type == 0)
                         <button type="button" class="btn btn-primary" data-id="{{$value->id}}">SET VIP</button>
                         @endif
@@ -45,6 +49,7 @@
                     <th>LoginTime</th>
                     <th>VipTime</th>
                     <th>AddTime</th>
+                    <th>IsMobile</th>
                     <th>SetUp</th>
                 </tr>
                 </tfoot>

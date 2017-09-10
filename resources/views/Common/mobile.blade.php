@@ -35,6 +35,7 @@
     </div>
 </div>
 <div class="weui-tab tool-bar-bottom">
+    <div class="weui-tab__panel"></div>
     <div class="weui-tabbar">
         <a href="/mobile/index" class="weui-tabbar__item {{ Request::getPathInfo() == '/mobile/index' ? 'ico-bg-color' : ''}}">
             <i class="fa fa-home ico-size-25" aria-hidden="true"></i>
