@@ -64,7 +64,7 @@
 @yield('content')
 <div class="footer clearfix">
     <div class="pull-left">GodSky © 2017 All Rights Reserved Terms of Use and Privacy Policy</div>
-    <div class="pull-right">Powered by GodSky v1.0</div>
+    <div class="pull-right">Powered by GodSky v1.3</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
