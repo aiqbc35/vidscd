@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use Symfony\Component\HttpFoundation\Request;
+
 class MobileController
 {
     public function index ()
@@ -45,9 +47,19 @@ class MobileController
         return view('Mobile.upvip');
     }
 
-    public function view()
+    public function view(Request $request)
     {
-        return view('Mobile.view');
+        $id = $request->get('id');
+        $video = null;
+        if (!is_null($id)) {
+            $result = app('App\Http\Controllers\ApiController')->getOneVideo($id);
+            if (isset($result['status']) && $result['status'] == 1) {
+                $video = $result;
+            }
+        }
+        return view('Mobile.view',[
+            'video' =>  $video
+        ]);
     }
 
 }

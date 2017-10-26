@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Link;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Request;
 
 class LinkController
@@ -67,6 +68,7 @@ class LinkController
             }
 
             if ($ret) {
+                Cache::forget('homeList');
                 return redirect('admin/links');
             }else{
                 return redirect()->back()->with('error','操作失败！')->withInput();

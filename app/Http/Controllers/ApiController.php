@@ -133,8 +133,28 @@ class ApiController extends ResponsController
     public function getVideoAndRand(Request $request)
     {
         $id = $request->get('id');
+        $result = $this->getOneVideo($id);
+        if ($result['status'] !== 1) {
+            return $this->setStatusCode($result['status'])->responsError($result['msg']);
+        }
+        $randVideo = $this->randVideo();
+        return $this->respons([
+            'status' => 'success',
+            'video' =>  $this->videoTransformer->tranuform($result['video']->toArray()),
+            'imglink'   =>  $result['imglink'],
+            'videolink' =>  $result['videolink'],
+            'randvideo' => $randVideo
+        ]);
+
+    }
+
+    public function getOneVideo($id)
+    {
         if (empty($id)) {
-            return $this->setStatusCode(404)->responsError('请选择视频');
+            return [
+                'status' => 404,
+                'msg'   =>  '请选择视频',
+            ];
         }
 
         $video = Video::where('status','=',1)
@@ -142,7 +162,10 @@ class ApiController extends ResponsController
             ->first();
 
         if (empty($video)) {
-            return $this->setStatusCode(404)->responsError('没有这个视频');
+            return [
+                'status' => 404,
+                'msg'   =>  '没有这个视频',
+            ];
         }
 
         $videolink = self::getVideService();
@@ -151,7 +174,10 @@ class ApiController extends ResponsController
         if ($video->type == 1) {
             $isLogin = $this->autoLogin();
             if ($isLogin) {
-                return $this->setStatusCode(101)->responsError($isLogin);
+                return [
+                    'status' => 101,
+                    'msg'   =>  $isLogin,
+                ];
             }
 
             Session::flush();
@@ -160,20 +186,20 @@ class ApiController extends ResponsController
             $userinfo = Cookie::get(self::$userinfoCookieName);
 
             if ($userinfo['vip'] == false) {
-                return $this->setStatusCode(102)->responsError('您还不是VIP，请升级至VIP再观看，现在VIP惊爆价只需18元');
+                return [
+                    'status' => 102,
+                    'msg'   =>  '您还不是VIP，请升级至VIP再观看，现在VIP惊爆价只需18元',
+                ];
             }
 
             $videolink = self::getVipVideoService();
         }
-        $randVideo = $this->randVideo();
-        return $this->respons([
-            'status' => 'success',
-            'video' =>  $this->videoTransformer->tranuform($video->toArray()),
-            'imglink'   =>  $imglink,
-            'videolink' =>  $videolink,
-            'randvideo' => $randVideo
-        ]);
-
+        return array(
+            'status' => 1,
+            'video' =>  $video,
+            'videolink' => $videolink,
+            'imglink'   =>  $imglink
+        );
     }
 
     private function randVideo()

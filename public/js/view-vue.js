@@ -17,10 +17,6 @@ new Vue({
         else{
             $.getJSON('/api/getvideo',{id:id},function (data) {
                 if (data.status == 'success') {
-                    _html = _self.createVideoHtml(data.video,data.imglink,data.videolink);
-                    $("#createHtmlVideo").html(_html);
-                    var myPlayer =  videojs("example_video_1");
-                    myPlayer.load();
                     _self.imglink = data.imglink;
                     _self.list = data.randvideo;
                     _self.title = data.video.title;
@@ -62,13 +58,6 @@ new Vue({
                 number = 7
             }
             return data.substring(0,number);
-        },
-        createVideoHtml:function(data,img,video){
-            var _html = '<video id="example_video_1" class="video-js vjs-16-9 vjs-big-play-centered fod-vjs-default-skin vjs-paused vjs-fluid vjs-controls-enabled vjs-workinghover vjs-mux fod-vjs-embed videoPlayer-25c17d6eb2-dimensions vjs-user-inactive" controls preload="none" width="840" height="264" poster="'+ img + data.img +'" data-setup="{}" >\n' +
-                '                        <source src="'+ video + data.video +'" type="video/mp4">\n' +
-                '                        <track kind="captions" src="/video-js/examples/shared/example-captions.vtt" srclang="en" label="English" default></track>\n' +
-                '                        <p class="vjs-no-js">您的瀏覽器不支持HTML5，請使用別的瀏覽器嘗試，建議使用：Chrome、火狐、360</p></video>';
-            return _html;
         },
         createUser:function () {
             if (this.email == '') {

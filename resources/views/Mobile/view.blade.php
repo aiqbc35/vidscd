@@ -5,7 +5,13 @@
 @section('content')
     <div class="weui-flex">
         <div class="weui-flex__item" id="createHtmlVideo">
-
+            @if(isset($video['imglink']))
+            <video id="example_video_1" class="video-js vjs-16-9 vjs-big-play-centered fod-vjs-default-skin vjs-paused vjs-fluid vjs-controls-enabled vjs-workinghover vjs-mux fod-vjs-embed videoPlayer-25c17d6eb2-dimensions vjs-user-inactive" controls preload="none" width="840" height="264" poster="{{ $video['imglink'] }}{{ $video['video']->image }}" data-setup="{}" >
+                <source src="{{ $video['videolink'] }}{{ $video['video']->link }}" type="video/mp4">
+                <track kind="captions" src="/video-js/examples/shared/example-captions.vtt" srclang="en" label="English" default></track>
+                <p class="vjs-no-js">您的瀏覽器不支持HTML5，請使用別的瀏覽器嘗試，建議使用：Chrome、火狐、360</p>
+            </video>
+            @endif
         </div>
     </div>
     <h3 class="page__title title"></h3>
@@ -16,7 +22,11 @@
 @section('script')
     <script src="{{ asset('video-js/ie8/videojs-ie8.min.js') }}"></script>
     <script src="{{ asset('video-js/video.min.js') }}"></script>
-
-<script src="/mobile/js/view.js?v1"></script>
-
+    <script src="/mobile/js/view.js?v1.1"></script>
+    <script>
+        $(function(){
+            var myPlayer = videojs("example_video_1");
+            myPlayer.load();
+        });
+    </script>
 @stop

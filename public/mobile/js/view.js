@@ -6,11 +6,6 @@ $(function () {
         $.getJSON('/api/getvideo',{id:id},function (data) {
 
             if (data.status == 'success') {
-                updateVideo(data.video, data.imglink, data.videolink);
-                var myPlayer = videojs("example_video_1");
-                myPlayer.load();
-
-
                 _html = createHtmlVideo(data.randvideo, data.imglink);
                 $("#vip").html(_html);
             }
@@ -31,8 +26,6 @@ $(function () {
         alert1('请选择视频');
         window.location.href = '/mobile/index';
     }
-
-
 })
 
 function createHtmlVideo(data, img) {
@@ -63,13 +56,6 @@ function subTextString(data) {
         number = 7
     }
     return data.substring(0, number);
-}
-
-function updateVideo(data, image, link) {
-    var _html = '<video id="example_video_1" class="video-js vjs-16-9 vjs-big-play-centered fod-vjs-default-skin vjs-paused vjs-fluid vjs-controls-enabled vjs-workinghover vjs-mux fod-vjs-embed videoPlayer-25c17d6eb2-dimensions vjs-user-inactive" controls preload="none" width="840" height="464" poster="' + image + data.img + '" data-setup="{}"> <source src="' + link + data.video + '" type="video/mp4"> <track kind="captions" src="/video-js/examples/shared/example-captions.vtt" srclang="en" label="English" default></track><p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">您的浏览器不支持HTML5，请更换浏览器</a></p></video>';
-
-    $(".title").text(data.title);
-    $("#createHtmlVideo").html(_html);
 }
 
 function getRequest() {

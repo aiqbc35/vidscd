@@ -32,9 +32,19 @@ class HomeController
     {
         return view('Home.userinfo');
     }
-    public function view ()
+    public function view (Request $request)
     {
-        return view('Home.view');
+        $id = $request->get('id');
+        $video = null;
+        if (!is_null($id)) {
+            $result = app('App\Http\Controllers\ApiController')->getOneVideo($id);
+            if (isset($result['status']) && $result['status'] == 1) {
+                $video = $result;
+            }
+        }
+        return view('Home.view',[
+            'video' =>  $video
+        ]);
     }
 
     public function member ()

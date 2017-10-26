@@ -67,9 +67,9 @@ return [
         ],
         'ftp' => [
             'driver'   => 'ftp',
-            'host'     => '45.32.76.83',
-            'username' => 'godsky',
-            'password' => 'god@sky#org',
+            'host'     => '185.175.158.246',
+            'username' => 'images',
+            'password' => 'y@p#654321',
             'port'     => 21,
             'root'     => '/',
         ],
