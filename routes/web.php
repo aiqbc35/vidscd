@@ -96,6 +96,8 @@ Route::group(['namespace' => 'Admin'],function()
         Route::get('/noticeedit/{id}','NoticeController@edit');
         Route::get('/notice/delete','NoticeController@delete');
         Route::post('/notice/addHalt','NoticeController@addHalt');
+        Route::get('/message','MessageController@index');
+        Route::post('/message/addHalt','MessageController@addHalt');
     });
 
 

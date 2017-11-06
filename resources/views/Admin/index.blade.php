@@ -7,7 +7,7 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{ $data['total'] }}</h3>
 
                         <p>Total User</p>
                     </div>
@@ -22,7 +22,7 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>53</h3>
+                        <h3>{{ $data['vip'] }}</h3>
 
                         <p>VIP User</p>
                     </div>
@@ -37,7 +37,7 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3>{{ $data['dayuser'] }}</h3>
 
                         <p>Add User</p>
                     </div>
@@ -52,7 +52,7 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>65</h3>
+                        <h3>{{ $data['dayvip'] }}</h3>
 
                         <p>Add VipUser</p>
                     </div>

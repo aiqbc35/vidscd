@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 
 use App\AdminUser;
+use App\Jobs\SendEmail;
+use App\Jobs\SendLinkMail;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Request;
-
+use Mail;
 class HomeController
 {
 
     public function index ()
     {
+        //dispatch(new SendLinkMail('aiqbc@126.com','godsky在线视频最新链接','http://www.godok.me'));
+
         return view('Home.index');
     }
 

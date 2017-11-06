@@ -162,6 +162,11 @@
                         <i class="fa  fa-gears"></i> <span>System</span>
                     </a>
                 </li>
+                <li class="{{ Request::getPathInfo() == '/admin/message' ? 'active' : ''}}">
+                    <a href="/admin/message">
+                        <i class="fa  fa-gears"></i> <span>message</span>
+                    </a>
+                </li>
                 <li class="treeview {{ Request::getPathInfo() == '/admin/code' ? 'active menu-open' : ''}}">
                     <a href="#">
                         <i class="fa fa-paper-plane"></i>
