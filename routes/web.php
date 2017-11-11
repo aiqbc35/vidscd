@@ -79,6 +79,7 @@ Route::group(['namespace' => 'Admin'],function()
         Route::get('/video/delete','VideoController@delete');
         Route::get('/videovip','VideoController@vip');
         Route::get('/loading','VideoController@loading');
+        Route::get('/recovervideo','VideoController@recovervideo');
         Route::get('/video/setok','VideoController@setok');
         Route::get('/videoadd','VideoController@add');
         Route::post('/video/addHalt','VideoController@addHalt');

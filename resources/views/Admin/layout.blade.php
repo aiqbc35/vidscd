@@ -116,7 +116,7 @@
                     </a>
                 </li>
 
-                <li class="treeview {{ (Request::getPathInfo() == '/admin/video' or Request::getPathInfo() == '/admin/videovip' or Request::getPathInfo() == '/admin/loading' or Request::getPathInfo() == '/admin/videoadd') ? 'active menu-open' : ''}}">
+                <li class="treeview {{ (Request::getPathInfo() == '/admin/video' or Request::getPathInfo() == '/admin/videovip' or Request::getPathInfo() == '/admin/loading' or Request::getPathInfo() == '/admin/videoadd' or Request::getPathInfo() == '/admin/recovervideo') ? 'active menu-open' : ''}}">
                     <a href="#">
                         <i class="fa fa-video-camera"></i>
                         <span>VIDEO</span>
@@ -129,6 +129,8 @@
                         <li class="{{ Request::getPathInfo() == '/admin/videovip' ? 'active' : ''}}"><a href="{{url('admin/videovip')}}"><i class="fa fa-circle-o text-aqua"></i> VIP video</a></li>
                         <li class="{{ Request::getPathInfo() == '/admin/loading' ? 'active' : ''}}"><a href="{{url('admin/loading')}}"><i class="fa fa-circle-o text-aqua"></i> loading video</a></li>
                         <li class="{{ Request::getPathInfo() == '/admin/videoadd' ? 'active' : ''}}"><a href="{{url('admin/videoadd')}}"><i class="fa fa-circle-o text-aqua"></i> add video</a></li>
+                        <li class="{{ Request::getPathInfo() == '/admin/recovervideo' ? 'active' : ''}}"><a href="{{url('admin/recovervideo')}}"><i class="fa fa-circle-o text-aqua"></i> recover
+ video</a></li>
                     </ul>
                 </li>
                 <li class="treeview {{ (Request::getPathInfo() == '/admin/links' or Request::getPathInfo() == '/admin/linksadd') ? 'active menu-open' : ''}}">

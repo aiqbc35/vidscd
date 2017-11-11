@@ -43,6 +43,7 @@ class LinkController
 
             $ret = $result->delete();
             if ($ret) {
+                Cache::forget('homeList');
                 $info['status'] = 1;
                 $info['msg'] = 'OK';
             }else{

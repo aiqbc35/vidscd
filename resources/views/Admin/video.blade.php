@@ -40,7 +40,6 @@
                             @if ($value->type == 0)
                                 <button type="button" class="btn btn-primary" data-id="{{$value->id}}">SET VIP</button>
                             @endif
-
                             <a class="btn btn-info" href="{{url('admin/videoadd?id='.$value->id)}}">EDIT</a>
                             <button type="button" class="btn btn-danger" data-id="{{$value->id}}">DELETE</button>
 

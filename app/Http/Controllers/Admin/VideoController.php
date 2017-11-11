@@ -125,6 +125,7 @@ class VideoController
             $ret->type = 1;
             $is = $ret->save();
             if ($is) {
+                Cache::forget('homeList');
                 $info['status'] = 1;
                 $info['msg'] = 'OK';
             }else{
@@ -148,6 +149,7 @@ class VideoController
             $ret->addtime = time();
             $is = $ret->save();
             if ($is) {
+                Cache::forget('homeList');
                 $info['status'] = 1;
                 $info['msg'] = 'OK';
             }else{
@@ -168,8 +170,10 @@ class VideoController
                 );
             }
 
-            $ret = $result->delete();
+            $result->status = 2;
+            $ret = $result->save();
             if ($ret) {
+                Cache::forget('homeList');
                 $info['status'] = 1;
                 $info['msg'] = 'OK';
             }else{
@@ -185,6 +189,16 @@ class VideoController
         $ret = Video::with('sort')->where('type','=',1)->where('status','=',1)->get();
         return view('Admin.video',[
             'name' => 'VIP VIDEO',
+            'list' => $ret,
+            'image' => self::getImageServer()
+        ]);
+    }
+    public function recovervideo ()
+    {
+
+        $ret = Video::with('sort')->where('status','=',2)->get();
+        return view('Admin.video',[
+            'name' => 'Recover VIDEO',
             'list' => $ret,
             'image' => self::getImageServer()
         ]);
