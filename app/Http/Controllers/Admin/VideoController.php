@@ -65,7 +65,7 @@ class VideoController
                     $realPath = $file->getRealPath();
 
                     //存储文件名
-                    $filenName = date("Y-m-d").'-'.uniqid().'.'.$ext;
+                    $filenName = date("Y-m-d").'/'.uniqid().'.'.$ext;
 
                     //执行上传文件
                     $bool = Storage::disk('ftp')->put($filenName,file_get_contents($realPath));

@@ -21,6 +21,12 @@ class SystemController
         ]);
     }
 
+    public function clearCache()
+    {
+        Cache::forget('homeList');
+        return redirect('/admin/htadmin');
+    }
+
     public function addHalt (Request $request)
     {
         if ($request->isMethod('post')) {

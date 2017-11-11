@@ -159,16 +159,21 @@
                         <li class="{{ Request::getPathInfo() == '/admin/noticeadd' ? 'active' : ''}}"><a href="{{url('admin/noticeadd')}}"><i class="fa fa-circle-o text-aqua"></i> add Notice</a></li>
                     </ul>
                 </li>
-                <li class="{{ Request::getPathInfo() == '/admin/system' ? 'active' : ''}}">
-                    <a href="/admin/system">
-                        <i class="fa  fa-gears"></i> <span>System</span>
+                <li class="treeview {{ (Request::getPathInfo() == '/admin/system' or Request::getPathInfo() == '/admin/message') ? 'active menu-open' : ''}}">
+                    <a href="#">
+                        <i class="fa fa-link"></i>
+                        <span>System</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ Request::getPathInfo() == '/admin/system' ? 'active' : ''}}"><a href="{{url('admin/system')}}"><i class="fa fa-circle-o text-aqua"></i> System</a></li>
+                        <li class="{{ Request::getPathInfo() == '/admin/message' ? 'active' : ''}}"><a href="{{url('admin/message')}}"><i class="fa fa-circle-o text-aqua"></i> message</a></li>
+                        <li class="{{ Request::getPathInfo() == '/admin/clearCache' ? 'active' : ''}}"><a href="{{url('admin/clearCache')}}"><i class="fa fa-circle-o text-aqua"></i> Clear Cache</a></li>
+                    </ul>
                 </li>
-                <li class="{{ Request::getPathInfo() == '/admin/message' ? 'active' : ''}}">
-                    <a href="/admin/message">
-                        <i class="fa  fa-gears"></i> <span>message</span>
-                    </a>
-                </li>
+
                 <li class="treeview {{ Request::getPathInfo() == '/admin/code' ? 'active menu-open' : ''}}">
                     <a href="#">
                         <i class="fa fa-paper-plane"></i>

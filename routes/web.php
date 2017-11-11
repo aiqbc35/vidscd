@@ -89,6 +89,7 @@ Route::group(['namespace' => 'Admin'],function()
         Route::get('/logout','IndexController@logout');
         Route::get('/system','SystemController@index');
         Route::post('/system/addHalt','SystemController@addHalt');
+        Route::get('/clearCache','SystemController@clearCache');
         Route::post('/link/addHalt','LinkController@addHalt');
         Route::get('/code','CodeController@index');
         Route::get('/addcode','CodeController@addcode');
