@@ -159,7 +159,7 @@
                         <li class="{{ Request::getPathInfo() == '/admin/noticeadd' ? 'active' : ''}}"><a href="{{url('admin/noticeadd')}}"><i class="fa fa-circle-o text-aqua"></i> add Notice</a></li>
                     </ul>
                 </li>
-                <li class="treeview {{ (Request::getPathInfo() == '/admin/system' or Request::getPathInfo() == '/admin/message') ? 'active menu-open' : ''}}">
+                <li class="treeview {{ (Request::getPathInfo() == '/admin/system' or Request::getPathInfo() == '/admin/message' or Request::getPathInfo() == '/admin/servicelink') ? 'active menu-open' : ''}}">
                     <a href="#">
                         <i class="fa fa-link"></i>
                         <span>System</span>
@@ -171,6 +171,7 @@
                         <li class="{{ Request::getPathInfo() == '/admin/system' ? 'active' : ''}}"><a href="{{url('admin/system')}}"><i class="fa fa-circle-o text-aqua"></i> System</a></li>
                         <li class="{{ Request::getPathInfo() == '/admin/message' ? 'active' : ''}}"><a href="{{url('admin/message')}}"><i class="fa fa-circle-o text-aqua"></i> message</a></li>
                         <li class="{{ Request::getPathInfo() == '/admin/clearCache' ? 'active' : ''}}"><a href="{{url('admin/clearCache')}}"><i class="fa fa-circle-o text-aqua"></i> Clear Cache</a></li>
+                        <li class="{{ Request::getPathInfo() == '/admin/servicelink' ? 'active' : ''}}"><a href="{{url('admin/servicelink')}}"><i class="fa fa-circle-o text-aqua"></i> Video Service</a></li>
                     </ul>
                 </li>
 

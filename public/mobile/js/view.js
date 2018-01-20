@@ -26,6 +26,22 @@ $(function () {
         alert1('请选择视频');
         window.location.href = '/mobile/index';
     }
+
+
+    $(".weui-btn_mini").click(function () {
+        id = $(this).data('id');
+        if (id) {
+            $.getJSON('/api/getvideoLink',{line:id},function (e) {
+                if (e.status == 'error') {
+                    alert1(e.msg);
+                }else{
+                    window.location.reload();
+                }
+            })
+        }
+    });
+
+
 })
 
 function createHtmlVideo(data, img) {

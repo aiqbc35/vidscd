@@ -20,6 +20,16 @@
     </div>
     <div class="container">
         <div class="page-header">
+            <h3>线路选择  :</h3>
+            <div>
+                @foreach($linkList as $value)
+                <button type="button" class="btn @if($value['type'] == 'vip') btn-success @else btn-info @endif" @click="reloadline({{ $value['line'] }})">{{ $value['title'] }}</button>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="page-header">
             <h3>随机推荐 </h3>
         </div>
         <div class="bs-example" data-example-id="thumbnails-with-custom-content">
@@ -40,7 +50,7 @@
 @stop
 @section('script')
 
-<script type="text/javascript" src="/js/view-vue.js?v1.1"></script>
+<script type="text/javascript" src="/js/view-vue.js?v1.5"></script>
 <script src="/video-js/ie8/videojs-ie8.min.js?v2"></script>
 <script src="/video-js/video.min.js?v1"></script>
     <script>

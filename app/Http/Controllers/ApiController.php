@@ -10,6 +10,7 @@ use App\Notice;
 use App\Service;
 use App\Transformer\VideoTransformer;
 use App\Video;
+use App\VideoService;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -168,7 +169,6 @@ class ApiController extends ResponsController
             ];
         }
 
-        $videolink = self::getVideService();
         $imglink = self::getImagesService();
 
         if ($video->type == 1) {
@@ -192,13 +192,21 @@ class ApiController extends ResponsController
                 ];
             }
 
-            $videolink = self::getVipVideoService();
+        }
+
+        $videolink = $this->VideoServiceLinkGet();
+
+        if ($videolink['status'] == 'error') {
+            return [
+                'status' => 102,
+                'msg'   =>  '您还不是VIP，请升级至VIP再观看，现在VIP惊爆价只需18元',
+            ];
         }
         return array(
             'status' => 1,
             'video' =>  $video,
-            'videolink' => $videolink,
-            'imglink'   =>  $imglink
+            'imglink'   =>  $imglink,
+            'videolink' => $videolink['data']['link']
         );
     }
 
@@ -236,36 +244,148 @@ class ApiController extends ResponsController
     }
 
     /**
-     * 随机调取视频服务器
+     * 获取视频服务器列表
      * @param Request $request
      * @return mixed
      */
-    static public function getVideService ()
+    public function getVideServiceLinkList ()
     {
-        if (Cache::has('videoServer')) {
-            $serviceList = Cache::get('videoServer');
-            $list = explode("||",$serviceList);
-            return $list[array_rand($list,1)];
-        }else{
-            $ret = Service::find(3);
-            Cache::put('videoServer',$ret->video,3600);
-            return self::getVideService();
+        if (!Cache::has('videoServerLinkList')) {
+            $link = VideoService::all();
+
+            $freelink = array();
+            $viplink = array();
+
+            foreach ($link as $key=>$value) {
+                if ($value->type == 'free') {
+                    $freelink[$key]['title'] = $value->title;
+                    $freelink[$key]['link'] = $value->link;
+                    $freelink[$key]['line'] = $value->id;
+                    $freelink[$key]['type'] = $value->type;
+                }else{
+                    $viplink[$key]['title'] = $value->title;
+                    $viplink[$key]['link'] = $value->link;
+                    $viplink[$key]['line'] = $value->id;
+                    $viplink[$key]['type'] = $value->type;
+                }
+            }
+            $servicelist = ['freelink' => $freelink,'viplink' => $viplink];
+            Cache::put('videoServerLinkList',$servicelist,3600);
+            return $servicelist;
         }
+
+        $servicelist = Cache::get('videoServerLinkList');
+        return $servicelist;
+    }
+
+    /**
+     * 获取视频服务器
+     * @return mixed|string
+     */
+    public function videoServiceLink( Request $request)
+    {
+        $line = $request->get('line');
+
+        return $this->VideoServiceLinkGet($line);
 
     }
 
-    static private function getVipVideoService ()
+    public function VideoServiceLinkGet( $line = null )
     {
-        if (Cache::has('vipVideoServer')) {
-            $images = Cache::get('vipVideoServer');
-            $list = explode("||",$images);
-            return $list[array_rand($list,1)];
+        $vip = self::UserIsVip();
+        if ($line) {
+            $result = VideoService::find($line);
+
+            if ($result) {
+                $link['line'] = $result->id;
+                $link['link'] = $result->link;
+                $link['title'] = $result->title;
+
+                if ($result->type == 'vip') {
+                    if ($vip){
+                        Cookie::queue('videoServiceLink',$link,3600);
+                        return [
+                            'status' => 'success',
+                            'data'   => $link
+                        ];
+                    }else{
+                        return [
+                            'status' => 'error',
+                            'msg'   =>  '您还不是VIP会员！'
+                        ];
+                    }
+
+                }else{
+                    Cookie::queue('videoServiceLink',$link,3600);
+                    return [
+                        'status' => 'success',
+                        'data'   => $link
+                    ];
+                }
+
+            }
+
+            return [
+                'status' => 'success',
+                'data'   => Cookie::get('videoServiceLink')
+            ];
         }else{
-            $ret = Service::find(3);
-            Cache::put('vipVideoServer',$ret->vipvideo,3600);
-            return self::getVipVideoService();
+
+            if (Cookie::has('videoServiceLink')) {
+                $videoServiceLink = Cookie::get('videoServiceLink');
+                return [
+                    'status' => 'success',
+                    'data'   => $videoServiceLink
+                ];
+            }else{
+                $servicelist = $this->getVideServiceLinkList();
+
+
+
+                if ($vip) {
+                    $videoServiceLink = array_rand($servicelist['viplink'],1);
+                    $videoServiceLink = $servicelist['viplink'][$videoServiceLink];
+                }else{
+                    $videoServiceLink = array_rand($servicelist['freelink'],1);
+                    $videoServiceLink = $servicelist['freelink'][$videoServiceLink];
+                }
+
+                Cookie::queue('videoServiceLink',$videoServiceLink,3600);
+                return [
+                    'status' => 'success',
+                    'data'   => $videoServiceLink
+                ];
+            }
+
         }
     }
+
+    /**
+     * 判断用户是否VIP
+     * @return bool  true 是  false 否
+     */
+    static private function UserIsVip()
+    {
+        $userinfo = Cookie::get(self::$userinfoCookieName);
+
+        if ($userinfo['vip'] == false) {
+            return false;
+        }
+        return true;
+    }
+
+//    static private function getVipVideoService ()
+//    {
+//        if (Cache::has('vipVideoServer')) {
+//            $images = Cache::get('vipVideoServer');
+//            $list = explode("||",$images);
+//            return $list[array_rand($list,1)];
+//        }else{
+//            $ret = Service::find(3);
+//            Cache::put('vipVideoServer',$ret->vipvideo,3600);
+//            return self::getVipVideoService();
+//        }
+//    }
     /**
      * 修改密码
      * @param Request $request

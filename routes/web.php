@@ -50,6 +50,8 @@ Route::group(['prefix' => 'api'],function()
     Route::get('getVideoList','ApiController@getVideoListPage');
     Route::get('getUserInfo','ApiController@getUserStatus');
     Route::get('getvideo','ApiController@getVideoAndRand');
+    Route::get('getvideoLinkList','ApiController@getVideServiceLinkList');
+    Route::get('getvideoLink','ApiController@videoServiceLink');
 
     Route::group(['middleware' => 'userlogin'],function(){
         Route::post('getActionCode','ApiController@codeAction');
@@ -99,7 +101,11 @@ Route::group(['namespace' => 'Admin'],function()
         Route::get('/notice/delete','NoticeController@delete');
         Route::post('/notice/addHalt','NoticeController@addHalt');
         Route::get('/message','MessageController@index');
+        Route::get('/servicelink','SystemController@servicelink');
+        Route::get('/servicelinkview','SystemController@servicelinkView');
+        Route::get('/serviceLinkDelete','SystemController@serviceLinkDelete');
         Route::post('/message/addHalt','MessageController@addHalt');
+        Route::post('/videoservice/serviceAdd','SystemController@serviceAdd');
     });
 
 

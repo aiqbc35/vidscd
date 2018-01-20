@@ -57,8 +57,12 @@ class MobileController
                 $video = $result;
             }
         }
+        $videoLinkList = app('App\Http\Controllers\ApiController')->getVideServiceLinkList();
+        $LinkList = array_merge($videoLinkList['freelink'],$videoLinkList['viplink']);
+
         return view('Mobile.view',[
-            'video' =>  $video
+            'video' =>  $video,
+            'link' => $LinkList
         ]);
     }
 

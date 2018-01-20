@@ -59,6 +59,16 @@ new Vue({
             }
             return data.substring(0,number);
         },
+        reloadline:function (data) {
+            var _self = this;
+            $.getJSON('/api/getvideoLink',{line:data},function (e) {
+                if (e.status == 'error') {
+                    _self.alert1(e.msg);
+                }else{
+                    window.location.reload();
+                }
+            })
+        },
         createUser:function () {
             if (this.email == '') {
                 this.alert1('郵箱不能為空！');

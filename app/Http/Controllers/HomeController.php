@@ -46,8 +46,13 @@ class HomeController
                 $video = $result;
             }
         }
+        $videoLinkList = app('App\Http\Controllers\ApiController')->getVideServiceLinkList();
+        $LinkList = array_merge($videoLinkList['freelink'],$videoLinkList['viplink']);
+
+
         return view('Home.view',[
-            'video' =>  $video
+            'video' =>  $video,
+            'linkList'  =>  $LinkList
         ]);
     }
 
