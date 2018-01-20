@@ -14,7 +14,8 @@
             @endif
         </div>
     </div>
-    <h3 class="page__title title">
+    <h3 class="page__title title" style="margin-bottom: 0px;">线路选择</h3>
+    <h3 class="page__title title" style="margin-top: 0px;">
         @foreach( $link as $value)
         <a href="javascript:;" class="weui-btn weui-btn_mini @if($value['type'] == 'free') weui-btn_primary @else weui-btn_warn @endif" data-id="{{ $value['line'] }}">{{ $value['title'] }}</a>
         @endforeach
